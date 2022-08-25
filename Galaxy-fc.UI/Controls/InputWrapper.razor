@@ -1,0 +1,34 @@
+﻿<div class="form-group mb-1">
+	<label for="@Id">
+		@Label
+	</label>
+	<InputText class="form-control" style="background-color: #dadada;" id="@Id" name="@Name" @bind-Value="ApplicationField" oninput="@(() => UpdateApplicationField)" />
+	<span class="application-validation-message">@Validation</span>
+</div>
+
+@code {
+	private string? Validation { get; set; } = "This field is required";
+	[Parameter, EditorRequired]
+	public string Name { get; set; } = null!;
+	[Parameter, EditorRequired]
+	public string Id { get; set; } = null!;
+	[Parameter, EditorRequired]
+	public string Label { get; set; } = null!;
+	[Parameter]
+	public string? ApplicationField { get; set; }
+	[Parameter]
+	public EventCallback<string> ApplicationFieldChanged { get; set; }
+
+	private Task UpdateApplicationField(ChangeEventArgs e)
+	{
+		if (string.IsNullOrWhiteSpace(e?.Value?.ToString()))
+		{
+			Validation = "This field is required";
+		}
+		else
+		{
+			Validation = null;
+		}
+		return ApplicationFieldChanged.InvokeAsync(e?.Value?.ToString());
+	}
+}

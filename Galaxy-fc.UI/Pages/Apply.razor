@@ -1,0 +1,80 @@
+﻿@page "/apply"
+@using System.ComponentModel.DataAnnotations
+
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavManager
+
+<PageTitle>Apply</PageTitle>
+
+<div class="container">
+	<h3 class="text-center">Application</h3>
+</div>
+
+<EditForm autocomplete="off" Model="@application" OnValidSubmit="@HandleValidSubmit">
+	<DataAnnotationsValidator />
+
+
+	<InputWrapper Name="entry.899352371"
+				  Id="characterName"
+				  Label="What is your character's name?"
+				  @bind-ApplicationField="@application.CharacterName" />
+
+	<InputWrapper Name="entry.2020113030"
+				  Id="discordName"
+				  Label="What is your Discord name? (Ex: Smith#1234 - please remember they're case sensitive).  One of our FC leads will connect with you to chat more about the process"
+				  @bind-ApplicationField="@application.DiscordName" />
+
+	<InputWrapper Name="entry.2022831907"
+				  Id="age"
+				  Label="What is your current age?"
+				  @bind-ApplicationField="@application.Age" />
+
+	<InputWrapper Name="entry.909410848"
+				  Id="time"
+				  Label="What times do you typically play XIV? (please include your timezone as well)"
+				  @bind-ApplicationField="@application.Time" />
+
+	<InputWrapper Name="entry.646597952"
+				  Id="expectations"
+				  Label="What are you looking for in an FC and/or do you have any expectations of us?"
+				  @bind-ApplicationField="@application.Expectations" />
+
+	<InputWrapper Name="entry.1631887260"
+				  Id="acceptance"
+				  Label="Our FC has members from all walks of life, backgrounds, and lifestyles. Being accepting of others is incredibly important to our team. Would you have any issues being a member of a diverse group like ours?"
+				  @bind-ApplicationField="@application.Acceptance" />
+
+	<InputWrapper Name="entry.1165999765"
+				  Id="opinion"
+				  Label=@("We would like your opinion on this to see how you feel as well! - We are currently not looking for players who are pessimistic, \"Debbie Downers\" or the \"woe is me\" type. We all just want to enjoy our time online and have fun without having anyone bring down the mood by constant negativity or complaining.")
+				  @bind-ApplicationField="@application.Opinion" />
+
+	<button type="submit" class="btn btn-primary m-2">Submit</button>
+</EditForm>
+
+
+@code {
+	private Application application = new();
+
+	private void HandleValidSubmit()
+	{
+		JsRuntime.InvokeAsync<object>(
+			"fetch",
+			"https://docs.google.com/forms/u/0/d/e/1FAIpQLSdqTaS2POuZhEUcTAlIPrN7z9UgRuKyVrYjb1vi2Y1QiEU7CQ/formResponse"
+			+ "?entry.899352371=" + application.CharacterName
+			+ "&entry.2020113030=" + application.DiscordName
+			+ "&entry.2022831907=" + application.Age
+			+ "&entry.909410848=" + application.Time
+			+ "&entry.646597952=" + application.Expectations
+			+ "&entry.1631887260=" + application.Acceptance
+			+ "&entry.1165999765=" + application.Opinion
+			);
+
+		JsRuntime.InvokeAsync<object>(
+			"alert",
+			"Thank you for your submission!"
+		);
+
+		NavManager.NavigateTo("/");
+	}
+}

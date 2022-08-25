@@ -1,0 +1,40 @@
+﻿@if (Pos == 1)
+{
+	<tr>
+		<td><img src="/images/first.png"></td>
+		<td>@UserName</td>
+		<td>@($"{Gil.ToString("N0")} gil")</td>
+	</tr>
+}
+else if (Pos == 2)
+{
+	<tr>
+		<td><img src="/images/second.png"></td>
+		<td>@UserName</td>
+		<td>@($"{Gil.ToString("N0")} gil")</td>
+	</tr>
+}
+else if (Pos == 3)
+{
+	<tr>
+		<td><img src="images/third.png"></td>
+		<td>@UserName</td>
+		<td>@($"{Gil.ToString("N0")} gil")</td>
+	</tr>
+}
+else
+{
+	<tr>
+		<td>@UserName</td>
+		<td>@($"{Gil.ToString("N0")} gil")</td>
+	</tr>
+}
+
+@code {
+	[Parameter]
+	public int? Pos { get; set; }
+	[Parameter, EditorRequired]
+	public string UserName { get; set; } = null!;
+	[Parameter, EditorRequired]
+	public int Gil { get; set; }
+}

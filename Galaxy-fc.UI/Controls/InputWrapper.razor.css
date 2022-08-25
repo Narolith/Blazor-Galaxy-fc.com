@@ -1,0 +1,17 @@
+﻿.warn {
+    font-size: 16px;
+    height: 16px;
+}
+
+label {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.group {
+    color: #DADADA;
+}
+
+input {
+    background-color: #DADADA;
+}

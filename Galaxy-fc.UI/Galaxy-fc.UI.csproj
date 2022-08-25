@@ -7,4 +7,8 @@
     <RootNamespace>Galaxy_fc.UI</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Blazorise.Animate" Version="1.0.6" />
+  </ItemGroup>
+
 </Project>

@@ -9,6 +9,7 @@ namespace Galaxy_fc.Api.Entities
         [Required]
         public string UserName { get; set; } = null!;
         public int Gil { get; set; }
+        public DateTime Date { get; set; }
         public DateTime Created_At { get; set; }
         public DateTime Modified_At { get; set; }
     }

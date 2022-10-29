@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'Galaxy-FC'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9300B48540514F2AB7D0DCB6C1EB0F9C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_294004940089478E8A4C5DDDA570627B }}
           package: .

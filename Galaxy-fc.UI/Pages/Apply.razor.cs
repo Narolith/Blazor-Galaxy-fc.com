@@ -9,6 +9,7 @@ namespace Galaxy_fc.UI.Pages
         [Required(ErrorMessage = "Your discord name is required.")]
         public string? DiscordName { get; set; }
         [Required(ErrorMessage = "Your current age is required.")]
+        [RegularExpression(@"^[1-9][0-9]?$|^100$", ErrorMessage = "Must be a valid number between 1-100.")]
         public string? Age { get; set; }
         [Required(ErrorMessage = "The typical time you play is required.")]
         public string? Time { get; set; }
